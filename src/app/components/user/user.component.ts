@@ -30,4 +30,16 @@ export class UserComponent implements OnInit {
       this.data = data;
     });
   }
+  getData() {
+    this.userService.getItem().subscribe((data: Item[]) => {
+      this.data = data;
+    });
+  }
+  deleteItem(id) {
+    this.userService.delItem(id).subscribe(data => {
+      this.userService.getItem().subscribe((data: Item[]) => {
+        this.data = data;
+      });
+    });
+  }
 }
