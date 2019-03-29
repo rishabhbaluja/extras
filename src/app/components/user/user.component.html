@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h2 class="mt-5">Add Item</h2>
+      <form [formGroup]="addForm" (ngSubmit)="create()" class="mt-5">
+        <div class="form-group">
+          <label for="itemname">Item Name:</label>
+          <input
+            type="text"
+            formControlName="itemname"
+            name="itemname"
+            id="itemaname"
+            class="form-control"
+            placeholder="Add Item"
+          />
+          <br />
+          <label for="itemquantity">Item Quantity:</label>
+          <input
+            type="text"
+            formControlName="itemquantity"
+            name="itemquantity"
+            id="itemquantity"
+            class="form-control"
+            placeholder="Add Item Quantity"
+          />
+          <br />
+          <label for="itembought">Item Bought:</label>
+          <input
+            type="text"
+            formControlName="itembought"
+            name="itembought"
+            id="itembought"
+            class="form-control"
+            placeholder="Item Bought"
+          />
+          <br />
+        </div>
+        <button type="submit" class="btn btn-success">
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<table class="table container table-striped">
+  <tr *ngFor="let dat of data">
+    <td>{{ dat.itemname }}</td>
+    <td>{{ dat.itemquantity }}</td>
+    <td>{{ dat.itembought }}</td>
+  </tr>
+    
+    
+    
+</table>
