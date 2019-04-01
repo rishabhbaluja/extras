@@ -14,7 +14,7 @@ export class UserService {
     return this.http.get<Item[]>(this.baseUrl2);
   }
   getItemById(id) {
-    return this.http.get<Item>(this.baseUrl+id);
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
   addItem(user) {
@@ -25,6 +25,6 @@ export class UserService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
   updateItem(user) {
-    return this.http.put(`${this.baseUrl}/${user.id}`, user);
+    return this.http.put(`${this.baseUrl}/${user._id}`, user);
   }
 }

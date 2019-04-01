@@ -15,20 +15,20 @@ export class UpdateUserComponent implements OnInit {
 
   //Reactive form
   ngOnInit() {
-    let id = localStorage.getItem("id");
-    if (!id) {
+    let _id = localStorage.getItem("id");
+    if (!_id) {
       alert("invalid action please check user list");
       this.router.navigate([""]);
     } else {
       this.editForm = new FormGroup({
         _id: new FormControl(null, [Validators.required]),
-        itemName: new FormControl(null, [Validators.required]),
-        itemQuantity: new FormControl(null, [Validators.required]),
-        itemBought: new FormControl(null, [Validators.required])
+        itemname: new FormControl(null, [Validators.required]),
+        itemquantity: new FormControl(null, [Validators.required]),
+        itembought: new FormControl(null, [Validators.required])
       });
     }
-    this.userService.getItemById(+id).subscribe(data => {
-      this.editForm.setValue(data);
+    this.userService.getItemById(_id).subscribe(data => {
+      this.editForm.patchValue(data);
     });
   }
 
@@ -37,12 +37,12 @@ export class UpdateUserComponent implements OnInit {
     this.submitted = true;
     if (this.editForm.invalid) {
       return;
-    }
+    } 
     this.userService.updateItem(this.editForm.value).subscribe(data => {
-      alert(this.editForm.value.itemName + " record updated");
-    });
-    this.userService.getItem().subscribe(data => {
-      this.router.navigate([""]);
+      alert(this.editForm.value.itemname + " record updated");
+      this.userService.getItem().subscribe(data => {
+        this.router.navigate([""]);
+      });
     });
   }
   backToUser() {
