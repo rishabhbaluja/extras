@@ -38,24 +38,33 @@
         <button type="submit" class="btn btn-success">
           Save
         </button>
-        &nbsp;
-
-        <button class="btn btn-success" (click)="getData()">
-          Get Items
-        </button>
       </form>
+      <!-- <button class="btn btn-warning" (click)="getData()">
+        Get Items
+      </button> -->
     </div>
   </div>
 </div>
-<table class="col-lg-7 table container table-striped">
+<table class="col-lg-7 table container table-striped" *ngIf="data">
+  <tr>
+    <td class="sr-only">Id</td>
+    <td>Name</td>
+    <td>Quantity</td>
+    <td>Bought</td>
+  </tr>
   <tr *ngFor="let dat of data">
-      <td>{{ dat._id }}</td>
+    <td class="sr-only">{{ dat._id }}</td>
     <td>{{ dat.itemname }}</td>
     <td>{{ dat.itemquantity }}</td>
-    <td>{{ dat.itembought }}</td>
     <td>
-      <button class="btn btn-danger" (click)="deleteItem(dat._id)">
+      {{ dat.itembought }}
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <button class="btn btn-danger" (click)="deleteItem(dat)">
         Delete
+      </button>
+      &nbsp;
+      <button class="btn btn-warning" (click)="editItem(dat)">
+        Edit
       </button>
     </td>
   </tr>

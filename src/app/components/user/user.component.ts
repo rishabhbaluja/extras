@@ -20,14 +20,16 @@ export class UserComponent implements OnInit {
       itemquantity: new FormControl(null, [Validators.required]),
       itembought: new FormControl(null, [Validators.required])
     });
+    this.userService.getItem().subscribe((data: Item[]) => {
+      this.data = data;
+    });
   }
   create() {
     if (this.addForm.invalid) {
       return;
     }
-    this.userService.addItem(this.addForm.value).subscribe(data => {});
-    this.userService.getItem().subscribe((data: Item[]) => {
-      this.data = data;
+    this.userService.addItem(this.addForm.value).subscribe((item: Item) => {
+      this.data.push(item);
     });
   }
   getData() {
@@ -35,11 +37,17 @@ export class UserComponent implements OnInit {
       this.data = data;
     });
   }
-  deleteItem(id) {
-    this.userService.delItem(id).subscribe(data => {
-      this.userService.getItem().subscribe((data: Item[]) => {
-        this.data = data;
-      });
+  deleteItem(item) {
+    this.userService.deleteItem(item._id).subscribe(result => {
+      this.data = this.data.filter(u => u !== item);
+      // this.userService.getItem().subscribe((data: Item[]) => {
+      //   this.data = data;
+      // });
     });
+  }
+  editItem(user: Item) {
+    localStorage.removeItem("id");
+    localStorage.setItem("id", user._id.toString());
+    this.router.navigate(["edit"]);
   }
 }

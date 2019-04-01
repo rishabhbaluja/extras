@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h2 class="mt-5">Edit Item</h2>
+      <form [formGroup]="editForm" (ngSubmit)="edit()" class="mt-5">
+        <div class="form-group">
+          <label for="_id" class="sr-only">Item Id:</label>
+          <input
+            type="text"
+            formControlName="_id"
+            name="_id"
+            id="_id"
+            class="form-control sr-only"
+          />
+          <br />
+          <label for="itemName">Item Name:</label>
+          <input
+            type="text"
+            formControlName="itemName"
+            name="itemName"
+            id="itemName"
+            class="form-control"
+          />
+          <br />
+          <label for="itemQuantity">Item Quantity:</label>
+          <input
+            type="text"
+            formControlName="itemQuantity"
+            name="itemQuantity"
+            id="itemQuantity"
+            class="form-control"
+          />
+          <br />
+          <label for="itemBought">Item Bought:</label>
+          <input
+            type="text"
+            formControlName="itemBought"
+            name="itemBought"
+            id="itemBought"
+            class="form-control"
+          />
+          <br />
+        </div>
+        <button type="submit" class="btn btn-success">
+          Save
+        </button>
+        <button type="button" class="btn btn-warning" (click)="backToUser()">
+          Go Back
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
